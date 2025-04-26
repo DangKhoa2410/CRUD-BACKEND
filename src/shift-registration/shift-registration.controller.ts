@@ -1,4 +1,12 @@
-import { Controller, Post, Body, Get, Param } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  Param,
+  Patch,
+  Delete,
+} from '@nestjs/common';
 import { ShiftRegistrationService } from './shift-registration.service';
 
 @Controller('shift-registration')
@@ -13,17 +21,37 @@ export class ShiftRegistrationController {
   }
 
   @Get('all')
-  async getAll() {
+  getAll() {
     return this.service.getAllRegistrations();
   }
 
   @Get('/date/:date')
-  async getByDate(@Param('date') date: string) {
+  getByDate(@Param('date') date: string) {
     return this.service.getByDate(date);
   }
 
   @Get(':email')
-  async getByEmail(@Param('email') email: string) {
+  getByEmail(@Param('email') email: string) {
     return this.service.getByEmail(email);
+  }
+
+  @Patch(':id/approve')
+  approve(@Param('id') id: string) {
+    return this.service.approve(Number(id));
+  }
+
+  @Patch(':email/approve-all')
+  approveAll(@Param('email') email: string) {
+    return this.service.approveAllByEmail(email);
+  }
+
+  @Patch(':email/reject-all')
+  rejectAll(@Param('email') email: string) {
+    return this.service.rejectAllByEmail(email);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.service.remove(Number(id));
   }
 }

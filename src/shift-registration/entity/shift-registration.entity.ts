@@ -23,4 +23,11 @@ export class ShiftRegistration {
 
   @CreateDateColumn()
   created_at: Date;
+
+  @Column({
+    type: 'enum',
+    enum: ['pending', 'approved', 'rejected'],
+    default: 'pending',
+  })
+  status: 'pending' | 'approved' | 'rejected';
 }
