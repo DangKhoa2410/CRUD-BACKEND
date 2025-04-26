@@ -3,7 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
 import { JwtModule } from '@nestjs/jwt';
 import { ShiftRegistrationModule } from './shift-registration/shift-registration.module';
-
+import { WorkUserModule } from './work-user/work-user.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -23,6 +23,7 @@ import { ShiftRegistrationModule } from './shift-registration/shift-registration
       signOptions: { expiresIn: '1h' },
     }),
     ShiftRegistrationModule,
+    WorkUserModule,
   ],
 })
 export class AppModule {}
